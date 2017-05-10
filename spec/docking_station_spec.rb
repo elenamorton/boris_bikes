@@ -16,6 +16,8 @@ describe DockingStation do
   #   expect(subject.dock_bike(Bike.new).count).to eq 2
   # end
 
+  DEFAULT_CAPACITY = 20
+
  it "docking station to release bike" do
    subject.dock_bike(Bike.new)
    expect(subject.release_bike).to be_working
@@ -39,12 +41,12 @@ describe DockingStation do
  end
 
  it "raise an exception if docking more than 20 bikes in one station" do
-   20.times{subject.dock_bike(Bike.new)}
+   DEFAULT_CAPACITY.times{subject.dock_bike(Bike.new)}
    expect{subject.dock_bike(Bike.new)}.to raise_error("No space available!!")
  end
 
  it "Allows up to 20 bikes to be docked at one time" do
-   expect(20.times {subject.dock_bike(Bike.new).count}).to eq 20
+   expect(DEFAULT_CAPACITY.times {subject.dock_bike(Bike.new).count}).to eq DEFAULT_CAPACITY
  end
 
 end
