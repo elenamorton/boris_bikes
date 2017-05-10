@@ -4,7 +4,7 @@ class DockingStation
   attr_reader :bikes
 
   def initialize
-    @bikes = Array.new(20, Bike.new)
+    @bikes = []
   end
 
   def release_bike
