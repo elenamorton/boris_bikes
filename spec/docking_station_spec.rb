@@ -47,4 +47,13 @@ describe DockingStation do
    expect(DockingStation::DEFAULT_CAPACITY.times {subject.dock_bike(Bike.new).count}).to eq DockingStation::DEFAULT_CAPACITY
  end
 
+ it "Allows user to set a capacity when creating a new docking station" do
+   docking_station = DockingStation.new(30)
+   expect(docking_station.capacity).to eq 30
+ end
+
+ it "Allows user to set up a docking station with default capacity" do
+   expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
+ end
+
 end
