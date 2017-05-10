@@ -34,6 +34,10 @@ describe DockingStation do
    expect(subject.bike).to eq bike
  end
 
-
+ it "raise an exception if docking another bike" do
+   instance = DockingStation.new
+   instance.dock_bike(Bike.new)
+   expect{instance.dock_bike(Bike.new)}.to raise_error("No space available!!")
+ end
 
 end

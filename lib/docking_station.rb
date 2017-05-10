@@ -9,12 +9,13 @@ class DockingStation
 
   def release_bike
     raise "No bike available!" if !@bike_docked
-    
+
     @bike_docked = false
     Bike.new
   end
 
   def dock_bike(bike)
+    raise "No space available!!" if @bike_docked
     @bike_docked = true
     @bike = bike
   end
