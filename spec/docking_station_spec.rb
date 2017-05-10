@@ -9,9 +9,17 @@ describe DockingStation do
 end
 
 describe DockingStation do
+
  it "docking station to release bike" do
-   expect(subject.release_bike).to be_working
+   instance = DockingStation.new
+   instance.dock_bike(Bike.new)
+   expect(instance.release_bike).to be_working
  end
+
+ it "Raises an exception if we try to use a bike from empty station" do
+   expect {subject.release_bike}.to raise_error("No bike available!")
+ end
+
  it { is_expected.to respond_to(:dock_bike).with(1).argument}
  it { is_expected.to respond_to(:bike)}
 
@@ -25,5 +33,7 @@ describe DockingStation do
    subject.dock_bike(bike)
    expect(subject.bike).to eq bike
  end
- 
+
+
+
 end
