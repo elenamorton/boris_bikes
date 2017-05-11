@@ -7,10 +7,12 @@ class DockingStation
   def initialize(capacity = DEFAULT_CAPACITY)
     @capacity = capacity
     @bikes = []
+    #@broken_bikes = []
   end
 
   def release_bike
-    raise "No bike available!" if empty?
+    raise "No bike available!" if empty? || all_broken?
+
     @bikes.pop
   end
 
@@ -29,6 +31,10 @@ private
 
   def empty?
     @bikes.empty?
+  end
+
+  def all_broken?
+    
   end
 
   def docking?

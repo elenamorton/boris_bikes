@@ -71,4 +71,15 @@ describe DockingStation do
    expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
  end
 
+ it "raise an exception if only broken bikes are docked, so nothing to release" do
+   bike1 = Bike.new
+   bike1.report_broken
+   bike2 = Bike.new
+   bike2.report_broken
+   subject.dock_bike(bike1)
+   subject.dock_bike(bike2)
+   expect {subject.release_bike}.to raise_error("No Bike Available!")
+ end
+
+
 end
