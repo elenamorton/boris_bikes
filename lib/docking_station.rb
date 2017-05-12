@@ -22,7 +22,7 @@ class DockingStation
 
 private
 
-  attr_reader :bikes
+  attr_reader :bikes, :working_bikes
 
   def full?
     @bikes.count >= DEFAULT_CAPACITY
@@ -34,8 +34,8 @@ private
 
   def all_broken?
     @working_bikes = @bikes.select do |bike|
-                      !bike.broken?
-                    end
+      !bike.broken?
+    end
     @working_bikes.empty?
   end
 
