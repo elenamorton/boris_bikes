@@ -90,19 +90,20 @@ let(:bike) {double(:bike)}
  end
 
  it "Raise an exception if only broken bikes are docked, so nothing to release" do
-   bike1 = Bike.new
-   bike1.report_broken
-   bike2 = Bike.new
-   bike2.report_broken
+   bike1 = double
+   bike2 = double
+   allow(bike1).to receive(:broken?).and_return(true)
+   allow(bike2).to receive(:broken?).and_return(true)
    subject.dock_bike(bike1)
    subject.dock_bike(bike2)
    expect {subject.release_bike}.to raise_error("No Bike Available!")
  end
 
  it "Test: not to release broken bike" do
-   bike1 = Bike.new
-   bike2 = Bike.new
-   bike2.report_broken
+   bike1 = double
+   bike2 = double
+   allow(bike1).to receive(:broken?).and_return(false)
+   allow(bike2).to receive(:broken?).and_return(true)
    subject.dock_bike(bike1)
    subject.dock_bike(bike2)
    expect(subject.release_bike).to eq bike1
