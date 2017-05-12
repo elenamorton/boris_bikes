@@ -35,7 +35,7 @@ describe DockingStation do
  end
 
  it "Raises an exception if we try to use a bike from empty station" do
-   expect {subject.release_bike}.to raise_error("No bike available!")
+   expect {subject.release_bike}.to raise_error("No Bike Available!")
  end
 
  it "docks something" do
@@ -81,5 +81,12 @@ describe DockingStation do
    expect {subject.release_bike}.to raise_error("No Bike Available!")
  end
 
-
+ it "test not to release broken bike" do
+   bike1 = Bike.new
+   bike2 = Bike.new
+   bike2.report_broken
+   subject.dock_bike(bike1)
+   subject.dock_bike(bike2)
+   expect(subject.release_bike).to eq bike1
+ end
 end
